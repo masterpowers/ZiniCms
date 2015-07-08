@@ -26,7 +26,6 @@ class UserController extends Controller {
         $data['roles'] = $user->roles;
         $data['permissions'] = $user->permissions;
             return $data ;
-
     }
 
 }

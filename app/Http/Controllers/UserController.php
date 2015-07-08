@@ -4,10 +4,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-//use Validator;
-//use Input;
-//use Redirect;
-//use Hash;
 use App\User;
 use App\Role;
 use App\Permission;
@@ -26,7 +22,6 @@ class UserController extends Controller {
         $data['roles'] = $user->roles;
         $data['permissions'] = $user->permissions;
             return $data ;
-
     }
 
 }

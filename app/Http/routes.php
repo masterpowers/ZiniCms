@@ -13,9 +13,12 @@
 
 Route::get('/', array( "as" => "home", "uses" => "UserController@index" ));
 
-Route::group(array('prefix' => 'admin', "namespace"=>"Admin"), function(){
-
-    Route::get('role', array( "as" => "role-index", "uses" => "RoleController@index" ));
+Route::group(['prefix' => 'admin', "namespace"=>"Admin"], function(){
+//    Route::get('/',  "UserController@index");
+    Route::resource('role', 'RoleController');
+    Route::resource('permission', 'PermissionController');
+    Route::resource('user', 'UserController');
+//    Route::get('role', array( "as" => "role-index", "uses" => "RoleController@index" ));
 
     Route::group(array("before"=>"csrf"), function(){
 

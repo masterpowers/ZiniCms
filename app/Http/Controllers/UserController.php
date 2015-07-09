@@ -16,7 +16,6 @@ class UserController extends Controller {
 	 * @return Response
 	 */
     public function index(){
-//        $data['message'] = "TESTING THE ENTRUST MODULE";
         $user = User::find(1);
         $data['user'] = $user;
         $data['roles'] = $user->roles;

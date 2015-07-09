@@ -12,3 +12,12 @@
 */
 
 Route::get('/', array( "as" => "home", "uses" => "UserController@index" ));
+
+Route::group(array('prefix' => 'admin', "namespace"=>"Admin"), function(){
+
+    Route::get('role', array( "as" => "role-index", "uses" => "RoleController@index" ));
+
+    Route::group(array("before"=>"csrf"), function(){
+
+    });
+});

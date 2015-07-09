@@ -1,7 +1,8 @@
 @extends('layouts/admin')
 @section('content')
-<h3>Update role</h3>
-<form action="{{ URL::route('admin.role.update', $role->id) }}" method="POST">
+<h3>Add Permission</h3>
+<form action="{{ URL::route('admin.permission.store') }}" method="POST">
+
     <div class="form-group">
         <label for="name">Name: </label>
         @if($errors->has("name"))
@@ -9,8 +10,9 @@
                 {{ $errors->first("name") }}
             </div>
         @endif
-        <input type="text" name="name" value="{{ $role->name }}" class="form-control" readonly>
+        <input type="text" name="name"  class="form-control"  value="{{ (Input::old('name')) ? e(Input::old('name')) : '' }}">
     </div>
+
     <div class="form-group">
         <label for="display_name">Display Name: </label>
         @if($errors->has("display_name"))
@@ -18,7 +20,7 @@
                 {{ $errors->first("display_name") }}
             </div>
         @endif
-        <input type="text" name="display_name" value="{{ $role->display_name }}" class="form-control">
+        <input type="text" name="display_name"  class="form-control"  value="{{ (Input::old('display_name')) ? e(Input::old('display_name')) : '' }}">
     </div>
 
     <div class="form-group">
@@ -28,10 +30,10 @@
                 {{ $errors->first("description") }}
             </div>
         @endif
-        <input type="text" name="description" value="{{ $role->description }}" class="form-control">
+        <input type="text" name="description"  class="form-control"  value="{{ (Input::old('description')) ? e(Input::old('description')) : '' }}">
     </div>
+
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="hidden" name="_method" value="PUT">
-    <button type="submit" class="btn btn-success">Update role</button>
+    <button type="submit" class="btn btn-success">Create Permission</button>
 </form>
 @stop

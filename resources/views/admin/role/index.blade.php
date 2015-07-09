@@ -1,9 +1,6 @@
 @extends('layouts/admin')
 @section('content')
 <h1>roles List</h1>
-
-
-
 <div class="input-group col-lg-4 pull-right">
     <input type="search" class="form-control light-table-filter" data-table="order-table" aria-describedby="search" placeholder="Filter roles">
     <span class="input-group-addon" id="search"><i class="glyphicon glyphicon-search"></i></span>
@@ -33,8 +30,17 @@
             <td class="roleName">{{ $role->display_name }}</td>
             <td>{{ $role->description }}</td>
             <td>
-                <a href="{{ URL::route('admin.role.edit', $role->id ) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a><br>
-                <a href="javascript:void(0)" data-target="{{ URL::route('admin.role.destroy', $role->id ) }}" class="deleteLink"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <a href="{{ URL::route('admin.role.edit', $role->id ) }}">
+                    <span class="glyphicon glyphicon-edit"></span> Edit
+                </a><br>
+
+                <a href="{{ URL::route('edit-role-permissions', $role->id ) }}">
+                    <span class="glyphicon glyphicon-lock"></span> Edit Permissions
+                </a><br>
+
+                <a href="javascript:void(0)" data-target="{{ URL::route('admin.role.destroy', $role->id ) }}" class="deleteLink">
+                    <span class="glyphicon glyphicon-remove"></span> Delete
+                </a>
             </td>
         </tr>
         @endforeach

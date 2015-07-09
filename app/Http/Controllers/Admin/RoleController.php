@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 use Validator;
 use Input;
 use Redirect;
-use Hash;
-use Auth;
-use App\User;
+//use Hash;
+//use Auth;
 use App\Role;
+use App\User;
+use App\Permission;
 
 class RoleController extends Controller {
 
     public function index(){
         $roles = Role::all();
-//        return $roles;
         return view("admin.role.index")->with(array("roles" =>$roles));
     }
 
@@ -31,10 +31,8 @@ class RoleController extends Controller {
 
 
     public function store(){
-//        dd(Input::all());
-
         $validator = Validator::make(Input::all(), array(
-//            "name"          => "required|max:120|min:3",
+            "name"          => "required|unique:roles|max:120|min:3",
             "display_name"  => "required|max:120|min:3",
             "description"   =>"max:500",
         ));
@@ -64,12 +62,55 @@ class RoleController extends Controller {
         }
     }
 
+    public function update($id){
+        $role = Role::find($id);
+        $validator = Validator::make(Input::all(), array(
+            "display_name"  => "required|max:120|min:3",
+            "description"   =>"max:500",
+        ));
+        if($validator->fails()){
+            return Redirect::route("admin.role.edit", $role->id)
+                ->withErrors($validator)
+                ->withInput();
+        }else{
+            $updated = $role->update([
+                "display_name" => Input::get("display_name"),
+                "description" => Input::get("description")
+            ]);
+
+            if($updated){
+                return Redirect::route("admin.role.index")->with("global", "Pemission ".Input::get("name")." successfully updated!");
+            }else{
+                return Redirect::route("admin.role.index")->with("global", "Something went wrong during the update!");
+            }
+        }
+    }
+
+    public function show($id){
+        $role = Role::find($id);
+        $permissions = $role->perms();
+        return view("admin.role.show", array("id"=>$id))->with(array("role" => $role, "permissions" => $permissions));
+    }
+
     public function destroy($id){
         $deleted = Role::find($id)->delete();
         if($deleted){
             return "Role deleted";
         }else{
             return "Something went wrong, try again later!";
+        }
+    }
+
+    public function editPermissions($role_id){
+        $role = Role::find($role_id);
+        return view("admin.role.editPermissions")->with(array("role" => $role));
+    }
+
+    public function updatePermissions($role_id){
+        $role = Role::find($role_id);
+        $synced = $role->permissions()->sync(Input::get("premissionsCheckBox"));
+        if($synced){
+            return Redirect::route("admin.role.show", $role_id)->with("global", "User concepts successfully updated");
         }
     }
 }

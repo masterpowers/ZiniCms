@@ -20,6 +20,7 @@ class UserController extends Controller {
         $data['user'] = $user;
         $data['roles'] = $user->roles;
         $data['permissions'] = $user->permissions;
+        $data['fuck'] = "FUCK YOU!";
             return $data ;
     }
 

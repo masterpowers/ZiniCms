@@ -31,7 +31,11 @@
             <td>{{ $permission->description }}</td>
             <td>
                 <a href="{{ URL::route('admin.permission.edit', $permission->id ) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a><br>
-                <a href="javascript:void(0)" data-target="{{ URL::route('admin.permission.destroy', $permission->id ) }}" class="deleteLink"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <form action="{{ URL::route('admin.permission.destroy', $permission->id ) }}" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button type="submit" ><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                </form>
             </td>
         </tr>
         @endforeach

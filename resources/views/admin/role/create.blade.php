@@ -1,8 +1,8 @@
 @extends('layouts/admin')
 @section('content')
 <h3>Add Role</h3>
+<a href="{{ URL::route('admin.role.index') }}" class="btn btn-default"> <span class="glyphicon glyphicon-chevron-left"></span> Back to Roles</a>
 <form action="{{ URL::route('admin.role.store') }}" method="POST">
-
     <div class="form-group">
         <label for="name">Name: </label>
         @if($errors->has("name"))

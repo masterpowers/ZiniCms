@@ -88,9 +88,9 @@ class PermissionController extends Controller {
     public function destroy($id){
         $deleted = Permission::find($id)->delete();
         if($deleted){
-            return "Permission deleted";
+            return Redirect::route("admin.permission.index")->with("global", "Permission was successfully deleted");
         }else{
-            return "Something went wrong, try again later!";
+            return Redirect::route("admin.permission.index")->with("global", "Something went wrong, try later!");
         }
     }
 }

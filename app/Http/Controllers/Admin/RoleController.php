@@ -95,15 +95,14 @@ class RoleController extends Controller {
     public function destroy($id){
         $deleted = Role::find($id)->delete();
         if($deleted){
-            return "Role deleted";
+            return Redirect::route("admin.role.index")->with("global", "Role was successfully deleted");
         }else{
-            return "Something went wrong, try again later!";
+            return Redirect::route("admin.role.index")->with("global", "Something went wrong, try later!");
         }
     }
 
     public function updatePermissions($role_id){
         $role = Role::find($role_id);
-//        dd(Input::get("permissionsCheckBox"));
         $synced = $role->perms()->sync(Input::get("permissionsCheckBox"));
         if($synced){
             return Redirect::route("admin.role.show", $role_id)->with("global", "User concepts successfully updated");

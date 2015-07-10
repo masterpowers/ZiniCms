@@ -88,8 +88,8 @@ class RoleController extends Controller {
 
     public function show($id){
         $role = Role::find($id);
-        $permissions = $role->perms();
-        return view("admin.role.show", array("id"=>$id))->with(array("role" => $role, "permissions" => $permissions));
+        $allPerms    = Permission::all();
+        return view("admin.role.show", array("id"=>$id))->with(array("role" => $role, "allPerms"=>$allPerms));
     }
 
     public function destroy($id){
@@ -101,14 +101,10 @@ class RoleController extends Controller {
         }
     }
 
-    public function editPermissions($role_id){
-        $role = Role::find($role_id);
-        return view("admin.role.editPermissions")->with(array("role" => $role));
-    }
-
     public function updatePermissions($role_id){
         $role = Role::find($role_id);
-        $synced = $role->permissions()->sync(Input::get("premissionsCheckBox"));
+//        dd(Input::get("permissionsCheckBox"));
+        $synced = $role->perms()->sync(Input::get("permissionsCheckBox"));
         if($synced){
             return Redirect::route("admin.role.show", $role_id)->with("global", "User concepts successfully updated");
         }

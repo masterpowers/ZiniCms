@@ -31,15 +31,21 @@
             <td>{{ $role->description }}</td>
             <td>
                 <a href="{{ URL::route('admin.role.edit', $role->id ) }}">
-                    <span class="glyphicon glyphicon-edit"></span> Edit
+                    <span class="glyphicon glyphicon-edit"></span> Edit Role
                 </a><br>
 
+{{--
+                <a href="{{ URL::route('admin.role.show', $role->id ) }}">
+                    <span class="glyphicon glyphicon-lock"></span> View Role Permissions
+                </a><br>
+--}}
+
                 <a href="{{ URL::route('edit-role-permissions', $role->id ) }}">
-                    <span class="glyphicon glyphicon-lock"></span> Edit Permissions
+                    <span class="glyphicon glyphicon-lock"></span> Edit Role Permissions
                 </a><br>
 
                 <a href="javascript:void(0)" data-target="{{ URL::route('admin.role.destroy', $role->id ) }}" class="deleteLink">
-                    <span class="glyphicon glyphicon-remove"></span> Delete
+                    <span class="glyphicon glyphicon-remove"></span> Delete Role
                 </a>
             </td>
         </tr>

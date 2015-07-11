@@ -1,4 +1,4 @@
-@extends('layouts/admin')
+@extends('layouts/dashboard')
 @section('content')
 <h1>roles List</h1>
 <div class="input-group col-lg-4 pull-right">

@@ -1,4 +1,4 @@
-@extends('layouts/admin')
+@extends('layouts/dashboard')
 @section('content')
 <h3>Update role</h3>
 <form action="{{ URL::route('admin.role.update', $role->id) }}" method="POST">

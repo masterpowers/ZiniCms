@@ -1,4 +1,4 @@
-@extends('layouts/admin')
+@extends('layouts/dashboard')
 @section('content')
 <h3>Add Permission</h3>
 <form action="{{ URL::route('admin.permission.store') }}" method="POST">

@@ -1,4 +1,4 @@
-@extends('layouts/admin')
+@extends('layouts/dashboard')
 @section('content')
 <h1>Role: {{ $role->display_name }}</h1>
 <p>{{ $role->description }}</p>

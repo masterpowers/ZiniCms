@@ -1,4 +1,4 @@
-@extends('layouts/admin')
+@extends('layouts/dashboard')
 @section('content')
 <h3>Add Role</h3>
 <a href="{{ URL::route('admin.role.index') }}" class="btn btn-default"> <span class="glyphicon glyphicon-chevron-left"></span> Back to Roles</a>

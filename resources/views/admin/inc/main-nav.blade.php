@@ -236,10 +236,14 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="{{ URL::route('user.show', $user->id)}}" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{-- URL::route('user.show', $user->id) --}}" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="{{ URL::route('admin.auth.destroy')}}" class="btn btn-default btn-flat">Sign out</a>
+                                <form action="{{ URL::route('auth.destroy')}}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <button type="submit" name="submit" class="btn btn-default btn-flat">Sign out</button>
+                                </form>
                             </div>
 
                         </li>

@@ -4,15 +4,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use Validator;
-use Input;
-use Redirect;
 use Auth;
-use App\User;
 use App\Permission;
 use App\Role;
 
-class DashboardController extends Controller {
+class BaseController extends Controller {
 
     public function index(){
         if(Auth::check() && Auth::user()->can('access-dashboard')){

@@ -30,10 +30,12 @@
                         </td>
                         <td>{{ date("M. Y", strtotime($user->created_at)) }}</td>
                         <td>
-                            <a href="{{ URL::route('admin.user.show', $user->id) }}">View</a><br>
-                            <a href="{{ URL::route('admin.user.edit', $user->id) }}">Edit</a><br>
-                            <a href="#">Ban</a><br>
-                            <a href="{{ URL::route('admin.user.destroy', $user->id) }}">Delete</a><br>
+                            <div class="btn-group-vertical block">
+                                <a href="{{ URL::route('admin.user.show', $user->id) }}"><span class="glyphicon glyphicon-eye-open"></span> View</a>
+                                <a href="{{ URL::route('admin.user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                                <a href="#">Ban</a>
+                                <a href="{{ URL::route('admin.user.destroy', $user->id) }}"><span class="glyphicon glyphicon-eye-remove"></span> Delete</a>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

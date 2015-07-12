@@ -13,7 +13,7 @@ use App\Role;
 use App\User;
 use App\Permission;
 
-class RoleController extends Controller {
+class RoleController extends BaseController {
 
     public function index(){
         $roles = Role::all();

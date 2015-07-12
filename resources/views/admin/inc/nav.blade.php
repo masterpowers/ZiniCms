@@ -40,7 +40,7 @@
                     </li>
                 @else
                 <li>
-                    <a href="{{ URL::route('admin-login')}}">Log In</a>
+                    <a href="{{ URL::route('login')}}">Log In</a>
                 </li>
                 @endif
             </ul>

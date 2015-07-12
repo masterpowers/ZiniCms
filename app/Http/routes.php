@@ -11,37 +11,36 @@
 |
 */
 
-//Route::get('/', array( "as" => "home", "uses" => "DashboardController@index" ));
+//Route::get('/', array( "as" => "home", "uses" => "BaseController@index" ));
 
 /*BACKEND ROUTES*/
 Route::group(['prefix' => 'admin', "namespace"=>"Admin"], function(){
 
-    Route::get('/',  "DashboardController@index");
+    Route::get('/',  "BaseController@index");
 
-    Route::get("dashboard", array("as"=>"admin-dashboard", "uses"=>"DashboardController@index"));
-    Route::get("login", array("as"=>"admin-login", "uses"=>"AuthController@create"));
+    Route::get("dashboard", array("as"=>"admin-dashboard", "uses"=>"BaseController@index"));
     Route::resource('role', 'RoleController');
     Route::resource('permission', 'PermissionController');
     Route::resource('user', 'UserController');
-    Route::resource('auth', 'AuthController', ['only' => ['create', 'store', 'destroy']]);
 
     Route::group(array("before"=>"csrf"), function(){
         Route::post('role/updatePermissions/{role_id}', array("as" => "update-role-permissions", "uses" => 'RoleController@updatePermissions'));
     });
 
-
 });
 
-/*Public Routes*/
-Route::get('user/register', array("as"=>"register", "uses"=> "UserController@create"));
-Route::resource('user', 'UserController');
+Route::get("/", array("as"=>"home", "uses"=>"HomeController@index"));
+Route::get("login", array("as"=>"login", "uses"=>"AuthController@create"));
+Route::get('register', array("as"=>"register", "uses"=> "UserController@create"));
+Route::resource('auth', 'AuthController', ['only' => ['create', 'store', 'destroy']]);
 
-/*Can I Access*/
-Route::filter('backend_access', function($request){
-  // check the current user
-    $segment = Request::segment(2);
-    if (!Entrust::can('access-dashboard') && $segment !="login") {
-      return Redirect::to('admin/login');
-    }
+Route::get('user/show/{id}', array("as" => "show-user", "uses" => 'UserController@show'));
+
+Route::group(array("before"=>"auth"), function(){
+    Route::resource('user', 'UserController', ['only' => ['create', 'store', 'edit', 'destroy']]);
 });
-Route::when('admin/*', 'backend_access');
+
+
+/*Can I Access? */
+Entrust::routeNeedsPermission('admin*', 'access-dashboard', Redirect::to('login'));
+

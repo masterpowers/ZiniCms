@@ -13,7 +13,7 @@ use App\User;
 use App\Concept;
 use App\Role;
 
-class UserController extends Controller {
+class UserController extends BaseController {
 
     /**
 	 * Display a listing of the resource.

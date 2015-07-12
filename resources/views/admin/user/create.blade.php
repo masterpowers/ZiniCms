@@ -1,7 +1,7 @@
 @extends('layouts/dashboard')
 @section('content')
     <form action="{{ URL::route('admin.user.store')}}" method="post">
-        <div class="body bg-gray">
+        <div class="body">
             @if($errors->has("name"))
                 <div class="form-group has-error">
                     <label class="control-label" for="name"><i class="fa fa-warning"></i> {{ $errors->first("name") }}</label>

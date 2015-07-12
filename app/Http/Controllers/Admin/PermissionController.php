@@ -13,7 +13,7 @@ use App\User;
 use App\Permission;
 use App\Role;
 
-class PermissionController extends Controller {
+class PermissionController extends BaseController {
     public function index(){
         $permissions = Permission::all();
         return view("admin.permission.index")->with(array("permissions" =>$permissions));

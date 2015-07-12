@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers\Admin;
+<?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -11,7 +11,6 @@ use Redirect;
 
 class AuthController extends Controller {
 
-
     /**
 	 * Show the form for creating a new resource.
 	 *
@@ -19,10 +18,13 @@ class AuthController extends Controller {
 	 */
     public function create(){
         if(!Auth::check()){
-            return view('admin.user.login');
+            return view('user.login');
         }else{
-            return Redirect::route("admin-dashboard")
-                ->with("global", "Your are already logged in!");
+            if(Auth::user()->can("access-dashboard")){
+                return Redirect::intended("admin/dashboard");
+            }else{
+                return Redirect::intended("/");
+            }
         }
     }
 
@@ -33,7 +35,6 @@ class AuthController extends Controller {
 	 */
     public function store(){
         $input = Input::all();
-
         $validator = Validator::make($input, array(
             "email" => "required|email",
             "password"=>"required"
@@ -54,13 +55,16 @@ class AuthController extends Controller {
             ), $remember);
 
             if($auth){
-                return Redirect::intended("admin/dashboard");
+                if(Auth::user()->can("access-dashboard")){
+                    return Redirect::intended("admin/dashboard");
+                }else{
+                    return Redirect::intended("/");
+                }
             }else{
-                return Redirect::route("admin-login")
-                    ->with("global", "Your Email/Password combination is wrong");
+                return Redirect::route("login")
+                    ->with("failedAuthMsg", "The Email/Password combination is wrong, please try again.");
             }
         }
-
     }
 
     /**
@@ -71,7 +75,7 @@ class AuthController extends Controller {
 	 */
     public function destroy(){
         Auth::logout();
-        return Redirect::route("admin-login");
+        return Redirect::route("login");
     }
 
 }

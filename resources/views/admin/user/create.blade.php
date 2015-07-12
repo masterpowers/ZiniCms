@@ -4,7 +4,7 @@
         <div class="body bg-gray">
             @if($errors->has("name"))
                 <div class="form-group has-error">
-                    <label class="control-label" for="inputWarning"><i class="fa fa-warning"></i> {{ $errors->first("name") }}</label>
+                    <label class="control-label" for="name"><i class="fa fa-warning"></i> {{ $errors->first("name") }}</label>
                     <input type="text" name="name"  class="form-control" value="{{ (Input::old('name')) ? e(Input::old('name')) : '' }}">
                 </div>
             @else
@@ -16,7 +16,7 @@
 
             @if($errors->has("email"))
                 <div class="form-group has-error">
-                    <label class="control-label" for="inputWarning"><i class="fa fa-warning"></i> {{ $errors->first("email") }}</label>
+                    <label class="control-label" for="email"><i class="fa fa-warning"></i> {{ $errors->first("email") }}</label>
                     <input type="text" name="email"  class="form-control" value="{{ (Input::old('email')) ? e(Input::old('email')) : '' }}">
                 </div>
             @else
@@ -28,7 +28,7 @@
 
             @if($errors->has("password"))
                 <div class="form-group has-error">
-                    <label class="control-label" for="inputWarning"><i class="fa fa-warning"></i> {{ $errors->first("password") }}</label>
+                    <label class="control-label" for="password"><i class="fa fa-warning"></i> {{ $errors->first("password") }}</label>
                     <input type="password" name="password"  class="form-control">
                 </div>
             @else
@@ -49,7 +49,6 @@
                     <input type="password" name="password_again"  class="form-control">
                 </div>
             @endif
-
 
             <input type="hidden" name="_token" value="{{csrf_token()}}">
 

@@ -24,22 +24,29 @@ Route::group(['prefix' => 'admin', "namespace"=>"Admin"], function(){
     Route::resource('user', 'UserController');
     Route::resource('auth', 'AuthController', ['only' => ['create', 'store', 'destroy']]);
 
-    Route::get("login", array("as"=>"admin-login", "uses"=>"AuthController@create"));
+
 
 
     Route::group(array("before"=>"csrf"), function(){
         Route::post('role/updatePermissions/{role_id}', array("as" => "update-role-permissions", "uses" => 'RoleController@updatePermissions'));
     });
+
+    Route::get("login", array("as"=>"admin-login", "uses"=>"AuthController@create"));
+    Route::group(array('before' => 'auth'), function(){
+    });
+
 });
-
-
 /*Public Routes*/
 Route::get('user/register', array("as"=>"register", "uses"=> "UserController@create"));
 Route::resource('user', 'UserController');
 
 
 /*Can I Access*/
-Entrust::routeNeedsPermission('admin/role*', "access-dashboard", Redirect::to("admin-login"));
-Entrust::routeNeedsPermission('admin/dashboard*', "access-dashboard", Redirect::to("admin-login"));
-Entrust::routeNeedsPermission('admin/permission*', "access-dashboard", Redirect::to("admin-login"));
-Entrust::routeNeedsPermission('admin/user*', "access-dashboard", Redirect::to("admin-login"));
+Route::filter('backend_access', function($request){
+  // check the current user
+    $segment = Request::segment(2);
+    if (!Entrust::can('access-dashboard') && $segment !="login") {
+      return Redirect::to('admin/login');
+    }
+});
+Route::when('admin/*', 'backend_access');

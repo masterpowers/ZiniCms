@@ -36,7 +36,6 @@ Route::group(['prefix' => 'admin', "namespace"=>"Admin"], function(){
 Route::get('user/register', array("as"=>"register", "uses"=> "UserController@create"));
 Route::resource('user', 'UserController');
 
-
 /*Can I Access*/
 Route::filter('backend_access', function($request){
   // check the current user

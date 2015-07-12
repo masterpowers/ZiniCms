@@ -61,7 +61,7 @@ class UserController extends Controller {
             ));
 
             if($user){
-                $user->attachRole(3);
+                $user->attachRole(4);
                 return Redirect::route("admin.user.index")->with("global", "User added successfully!");
             }
         }

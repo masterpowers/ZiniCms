@@ -15,13 +15,24 @@ class UserController extends Controller {
 	 *
 	 * @return Response
 	 */
-    public function index(){
-        $user = User::find(1);
-        $data['user'] = $user;
-        $data['roles'] = $user->roles;
-        $data['permissions'] = $user->permissions;
-        $data['fuck'] = "FUCK YOU!";
-            return $data ;
+    public function index( ){
+
+    }
+
+    public function create(){
+        return view("user.register");
+    }
+
+    public function store($id){
+
+    }
+
+    public function edit($id){
+
+    }
+
+    public function destroy($id){
+
     }
 
 }

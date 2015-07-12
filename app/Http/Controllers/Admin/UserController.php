@@ -21,8 +21,8 @@ class UserController extends Controller {
 	 * @return Response
 	 */
     public function index(){
-        $users = User::all();
-        return view("admin.user.index")->with(array("users" =>$users));
+        $users = User::with("roles")->get();
+        return view("admin.user.index")->with(array("users" =>$users, "title"=>"View Users"));
     }
 
     /**
@@ -84,7 +84,7 @@ class UserController extends Controller {
 	 * @return Response
 	 */
     public function edit($id){
-        $user = User::find($id);
+        $user = User::with("roles")->find($id);
         return view("admin.user.edit")->with(array("user" => $user));
     }
 
@@ -94,8 +94,7 @@ class UserController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-    public function update(){
-        $id = Input::get("id");
+    public function update($id){
         $user = User::find($id);
         $validator = Validator::make(Input::all(), array(
             "password" => "required|min:6",
@@ -118,29 +117,6 @@ class UserController extends Controller {
         }
     }
 
-
-    /**
-	 * Update the the allowed concepts for this specific user
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-//    public function allowedConcepts($id){
-//        $currentUser = User::find($id);
-//        $userConcepts = $currentUser->concepts;
-//        $allConcepts = Concept::all();
-//        return view("admin.user.concepts")->with(array("user" => $currentUser, "allConcepts" => $allConcepts));
-//    }
-
-//    public function updateAllowedConcepts(){
-//        $user = User::find(Input::get("user"));
-//        $synced = $user->concepts()->sync(Input::get("conceptsCheckBox"));
-//        if($synced){
-//            return Redirect::route("admin.user.index")->with("global", "User concepts successfully updated");
-//        }
-//    }
-
-
     public function roles($id){
         $currentUser = User::find($id);
         $userRoles = $currentUser->roles;
@@ -155,8 +131,6 @@ class UserController extends Controller {
             return Redirect::route("admin.user.index")->with("global", "User roles successfully updated");
         }
     }
-
-
 
     /**
 	 * Remove the specified resource from storage.

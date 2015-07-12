@@ -145,6 +145,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         
         'Zizaco\Entrust\EntrustServiceProvider',
+        "App\Providers\ViewComposerServiceProvider",
 
     ],
 

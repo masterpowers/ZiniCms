@@ -19,8 +19,6 @@ class DashboardController extends Controller {
             $roles = Role::all();
             $permissions = Permission::all();
             return view("admin.dashboard.index")->with(array("roles"=>$roles, "permissions" => $permissions));
-        }else{
-            return Redirect::route("admin-login");
         }
     }
 

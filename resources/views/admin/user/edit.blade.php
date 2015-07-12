@@ -26,7 +26,7 @@
             @foreach($user->roles as $role)
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="userRoles[]" value="{{ $role->id }}"/>{{ $role->name }}
+                        <input type="checkbox" name="userRoles[]" value="{{ $role->id }}"/>{{ $role->display_name }}
                     </label>
                 </div>
             @endforeach

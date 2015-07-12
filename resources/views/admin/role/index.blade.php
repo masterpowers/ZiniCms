@@ -24,7 +24,7 @@
                         <td>{{ $role->name }}</td>
                         <td>{{ $role->description }}</td>
                         <td>
-                            <div class="btn-group-vertical block">
+                            <div class="btn-group">
                                 <a href="{{ URL::route('admin.role.show', $role->id) }}" class="btn btn-default">
                                     <span class="glyphicon glyphicon-eye-open"></span> View
                                 </a>

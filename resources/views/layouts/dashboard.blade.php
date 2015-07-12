@@ -26,6 +26,9 @@
             .btn-group-vertical .btn{
                 text-align: left;
             }
+            form.btn .submit{
+                display: none;
+            }
         </style>
     </head>
     <body class="skin-black">
@@ -78,6 +81,9 @@
         <script>
             $(function() {
                 $('.paginatedDataTable').dataTable();
+                $("form.btn").click(function(){
+                   $(this).submit();
+                });
             });
         </script>
     </body>

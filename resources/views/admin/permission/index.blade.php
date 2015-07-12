@@ -24,14 +24,14 @@
                     <td>{{ $permission->display_name }}</td>
                     <td>{{ $permission->description }}</td>
                     <td>
-                        <div class="btn-group-vertical block">
+                        <div class="btn-group">
                             <a href="{{ URL::route('admin.permission.edit', $permission->id ) }}" class="btn btn-default">
                                 <span class="glyphicon glyphicon-edit"></span> Edit
                             </a>
-                            <form action="{{ URL::route('admin.permission.destroy', $permission->id ) }}" method="POST">
+                            <form action="{{ URL::route('admin.permission.destroy', $permission->id ) }}" method="POST" class="btn btn-default">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-default btn-block"><span class="glyphicon glyphicon-remove"></span> Delete</button>
+                                <input type="submit" class="submit"><span class="glyphicon glyphicon-remove"></span> Delete
                             </form>
                         </div>
                     </td>

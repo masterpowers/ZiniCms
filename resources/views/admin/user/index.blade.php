@@ -30,11 +30,11 @@
                         </td>
                         <td>{{ date("M. Y", strtotime($user->created_at)) }}</td>
                         <td>
-                            <div class="btn-group-vertical block">
-                                <a href="{{ URL::route('admin.user.show', $user->id) }}"><span class="glyphicon glyphicon-eye-open"></span> View</a>
-                                <a href="{{ URL::route('admin.user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
-                                <a href="#">Ban</a>
-                                <a href="{{ URL::route('admin.user.destroy', $user->id) }}"><span class="glyphicon glyphicon-eye-remove"></span> Delete</a>
+                            <div class="btn-group ">
+                                <a href="{{ URL::route('admin.user.show', $user->id) }}" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> View</a>
+                                <a href="{{ URL::route('admin.user.edit', $user->id) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Ban</a>
+                                <a href="{{ URL::route('admin.user.destroy', $user->id) }}" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Delete</a>
                             </div>
                         </td>
                     </tr>

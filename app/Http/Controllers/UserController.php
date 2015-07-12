@@ -27,12 +27,16 @@ class UserController extends Controller {
 
     }
 
-    public function edit($id){
+    public function show($id){
+        return User::find($id);
+    }
 
+    public function edit($id){
+        return User::find($id);
     }
 
     public function destroy($id){
-
+        return User::find($id);
     }
 
 }

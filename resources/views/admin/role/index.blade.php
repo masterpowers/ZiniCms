@@ -25,11 +25,11 @@
                         <td>{{ $role->description }}</td>
                         <td>
                             <div class="btn-group">
-                                <a href="{{ URL::route('admin.role.show', $role->id) }}" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-eye-open"></span> View
-                                </a>
                                 <a href="{{ URL::route('admin.role.edit', $role->id) }}" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-edit"></span> Edit
+                                    <span class="glyphicon glyphicon-edit"></span> Edit Role
+                                </a>
+                                <a href="{{ URL::route('admin.role.show', $role->id) }}" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-eye-open"></span> Edit Role Permissions
                                 </a>
                                 <a href="{{ URL::route('admin.role.destroy', $role->id) }}" class="btn btn-default">
                                     <span class="glyphicon glyphicon-remove"></span> Delete</a>

@@ -1,9 +1,12 @@
 @extends('layouts/dashboard')
 @section('content')
 <div class="box">
+<!--
     <div class="box-header">
         <h3 class="box-title">Users List</h3>
-    </div><!-- /.box-header -->
+    </div>
+-->
+    <!-- /.box-header -->
     <div class="box-body table-responsive">
         <table class="table table-bordered table-striped paginatedDataTable">
             <thead>

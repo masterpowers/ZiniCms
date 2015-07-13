@@ -14,7 +14,7 @@ class BaseController extends Controller {
         if(Auth::check() && Auth::user()->can('access-dashboard')){
             $roles = Role::all();
             $permissions = Permission::all();
-            return view("admin.dashboard.index")->with(array("roles"=>$roles, "permissions" => $permissions));
+            return view("admin.dashboard.index")->with(array("roles"=>$roles, "permissions" => $permissions, "page_title"=>"Dashboard"));
         }
     }
 

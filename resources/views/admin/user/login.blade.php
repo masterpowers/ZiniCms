@@ -1,20 +1,19 @@
 @extends('layouts/login-register')
 @section('content')
-    <div class="header">Sign In</div>
 
     <form action="{{ URL::route('admin.auth.store') }}" method="post">
         <div class="body bg-gray">
             <div class="form-group">
                 @if($errors->has("email"))
-                <p class="email-pass-error">{{ $errors->first("email") }}</p>
+                    <p class="email-pass-error">{{ $errors->first("email") }}</p>
                 @endif
-                <input type="text" placeholder="Email" class="form-control" name="email" (Input::old('email')) ? value="{{ e(Input::old('email')) }}" : value="">
+                <input type="text" class="form-control" name="email" (Input::old('email')) ? value="{{ e(Input::old('email')) }}" : value="">
             </div>
             <div class="form-group">
                 @if($errors->has("password"))
-                <p class="email-pass-error">{{ $errors->first("password") }}</p>
+                    <p class="email-pass-error">{{ $errors->first("password") }}</p>
                 @endif
-                <input type="password" placeholder="Password" class="form-control" name="password" >
+                <input type="password" class="form-control" name="password" >
             </div>
             <div class="form-group">
                 <input type="checkbox" name="remember"/> Remember me

@@ -17,7 +17,7 @@ class RoleController extends BaseController {
 
     public function index(){
         $roles = Role::all();
-        return view("admin.role.index")->with(array("roles" =>$roles));
+        return view("admin.role.index")->with(array("roles" =>$roles, "page_title"=>"Roles List"));
     }
 
     public function create(){
@@ -26,7 +26,7 @@ class RoleController extends BaseController {
 
     public function edit($id){
         $role = Role::find($id);
-        return view("admin.role.edit")->with(array("role" => $role));
+        return view("admin.role.edit")->with(array("role" => $role, "page_title"=>"Edit Role"));
     }
 
 
@@ -89,7 +89,7 @@ class RoleController extends BaseController {
     public function show($id){
         $role = Role::find($id);
         $allPerms    = Permission::all();
-        return view("admin.role.show", array("id"=>$id))->with(array("role" => $role, "allPerms"=>$allPerms));
+        return view("admin.role.show", array("id"=>$id))->with(array("role" => $role, "allPerms"=>$allPerms,"page_title"=>"Role"));
     }
 
     public function destroy($id){

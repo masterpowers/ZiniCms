@@ -7,25 +7,25 @@ use Illuminate\Http\Request;
 use Validator;
 use Input;
 use Redirect;
-//use Hash;
 use Auth;
 use App\User;
 use App\Permission;
 use App\Role;
 
 class PermissionController extends BaseController {
+
     public function index(){
         $permissions = Permission::all();
-        return view("admin.permission.index")->with(array("permissions" =>$permissions));
+        return view("admin.permission.index")->with(array("permissions" =>$permissions, "page_title"=>"Permission List"));
     }
 
     public function create(){
-        return view("admin.permission.create");
+        return view("admin.permission.create")->with("page_title","Add Permission");
     }
 
     public function edit($id){
         $permission = Permission::find($id);
-        return view("admin.permission.edit")->with(array("permission" => $permission));
+        return view("admin.permission.edit")->with(array("permission" => $permission, "page_title"=>"Edit Permission"));
     }
 
 

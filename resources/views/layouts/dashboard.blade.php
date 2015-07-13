@@ -49,6 +49,7 @@
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
+                   @yield("page-meta")
                     <h1>
                         {{ $page_title or "Page Title" }}
                         <small>{{ $page_description or null }}</small>

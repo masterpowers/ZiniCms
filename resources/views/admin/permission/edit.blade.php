@@ -1,6 +1,5 @@
 @extends('layouts/dashboard')
 @section('content')
-<h3>Update permission</h3>
 <form action="{{ URL::route('admin.permission.update', $permission->id) }}" method="POST">
     <div class="form-group">
         <label for="name">Name: </label>

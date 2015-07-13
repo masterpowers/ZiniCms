@@ -20,7 +20,7 @@
                 </label>
             </div>
         </div>
-        <h3>Roles: </h3>
+        <h4>Roles: </h4>
         <div class="form-group">
             @foreach($user->roles as $role)
                 <div class="checkbox">

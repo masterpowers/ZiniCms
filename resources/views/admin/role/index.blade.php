@@ -1,10 +1,9 @@
 @extends('layouts/dashboard')
 @section('content')
-<h1>Roles List</h1>
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Roles List</h3>
+<!--        <h3 class="box-title">Roles List</h3>-->
     </div><!-- /.box-header -->
     <div class="box-body table-responsive">
         <table class="table table-bordered table-striped paginatedDataTable">

@@ -22,7 +22,7 @@ class UserController extends BaseController {
 	 */
     public function index(){
         $users = User::with("roles")->get();
-        return view("admin.user.index")->with(array("users" =>$users, "title"=>"View Users"));
+        return view("admin.user.index")->with(array("users" =>$users, "page_title"=>"View Users"));
     }
 
     /**
@@ -31,7 +31,7 @@ class UserController extends BaseController {
 	 * @return Response
 	 */
     public function create(){
-        return view("admin.user.create");
+        return view("admin.user.create")->with("page_title", "Add a User");
     }
 
     /**
@@ -85,7 +85,7 @@ class UserController extends BaseController {
 	 */
     public function edit($id){
         $user = User::with("roles")->find($id);
-        return view("admin.user.edit")->with(array("user" => $user));
+        return view("admin.user.edit")->with(array("user" => $user, "page_title"=>"Edit a User"));
     }
 
     /**
@@ -121,7 +121,7 @@ class UserController extends BaseController {
         $currentUser = User::find($id);
         $userRoles = $currentUser->roles;
         $allRoles = Role::all();
-        return view("admin.user.roles")->with(array("user" => $currentUser, "allRoles" => $allRoles));
+        return view("admin.user.roles")->with(array("user" => $currentUser, "allRoles" => $allRoles, "page_title"=>"User Role"));
     }
 
     public function updateRoles(){

@@ -215,7 +215,7 @@
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header bg-light-blue">
-                            <img src="../../img/avatar3.png" class="img-circle" alt="User Image" />
+                            <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAORAAAAJDY5N2Q0NzY3LTcwNTAtNDhjNS04OTA1LTE0ZmU5MjI3MTdlMg.jpg" class="img-circle" alt="User Image" />
                             <p>
                                 {{ $user->name }}
                                 <small>Member since {{ date("M. Y", strtotime($user->created_at)) }}</small>

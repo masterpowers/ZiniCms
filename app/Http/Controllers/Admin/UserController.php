@@ -85,7 +85,8 @@ class UserController extends BaseController {
 	 */
     public function edit($id){
         $user = User::with("roles")->find($id);
-        return view("admin.user.edit")->with(array("user" => $user, "page_title"=>"Edit a User"));
+        $allRoles = Role::all();
+        return view("admin.user.edit")->with(array("user" => $user, "allRoles"=>$allRoles, "page_title"=>"Edit a User"));
     }
 
     /**
@@ -96,32 +97,37 @@ class UserController extends BaseController {
 	 */
     public function update($id){
         $user = User::find($id);
-        $validator = Validator::make(Input::all(), array(
-            "password" => "required|min:6",
-            "password_again" => "required|same:password",
-        ));
-
-        if($validator->fails()){
-            return Redirect::route("admin.user.edit", $id)->withErrors($validator)->withInput();
-        }else{
-            //            $name = Input::get("name");
-            $password = Input::get("password");
-            $updated = $user->update([
-                //                "name"     =>$name,
-                "password"  => Hash::make($password)
-            ]);
-
-            if($updated){
-                return Redirect::route("admin.user.index")->with("global", "User Edited successfully!");
-            }
+        $roles = Input::get("rolesCheckBox");
+        $synced = $user->roles()->sync($roles);
+        if($synced){
+            return Redirect::route("admin.user.index")->with("global", "User successfully updated!");
         }
+//        $validator = Validator::make(Input::all(), array(
+//            "password" => "required|min:6",
+//            "password_again" => "required|same:password",
+//        ));
+
+//        if($validator->fails()){
+//            return Redirect::route("admin.user.edit", $id)->withErrors($validator)->withInput();
+//        }else{
+//            //            $name = Input::get("name");
+//            $password = Input::get("password");
+//            $updated = $user->update([
+//                //                "name"     =>$name,
+//                "password"  => Hash::make($password)
+//            ]);
+//
+//            if($updated){
+//                return Redirect::route("admin.user.index")->with("global", "User Edited successfully!");
+//            }
+//        }
     }
 
     public function roles($id){
         $currentUser = User::find($id);
         $userRoles = $currentUser->roles;
         $allRoles = Role::all();
-        return view("admin.user.roles")->with(array("user" => $currentUser, "allRoles" => $allRoles, "page_title"=>"User Role"));
+        return view("admin.user.roles")->with(array("allRoles" => $allRoles, "page_title"=>"User Role"));
     }
 
     public function updateRoles(){
